@@ -1,5 +1,5 @@
 import { observable, action, runInAction, useStrict } from 'mobx';
-import { jobDescriptions, searchJson, constDescriptions, addNougats, getNougats } from '../../fetch/index';
+import { searchJson, addNougats, getNougats } from '../../fetch/index';
 useStrict(true);
 
 class NougatStore {
