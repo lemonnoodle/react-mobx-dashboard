@@ -48,28 +48,6 @@ class NougatStore {
         })
     }
 
-    @action getJobOptions = async () => {
-        const res = await jobDescriptions();
-        runInAction(() => {
-            this.jobDatas = [];
-            this.jobOptions = [];
-            this.createJobOptions = [];
-            if (res.data !== null && res.code === 1) {
-                const datas = res.data;
-                this.jobDatas = datas;
-                datas.forEach((r) => {
-                    if (this.jobOptions.indexOf(r.type_name) === -1) {
-                        this.jobOptions.push(r.type_name);
-                    }
-                    this.createJobOptions.push({
-                        value: r.type_name,
-                        text: r.name
-                    })
-                })
-            }
-        })
-    }
-
     @action getSearchList = async (value) => {
         const param = {code: 'utf-8',q: value};
         const res = await searchJson(param);
@@ -82,19 +60,6 @@ class NougatStore {
                     text: r[0],
                 });
             });
-        })
-    }
-
-    @action getConstDes = async() => {
-        const res = await constDescriptions();
-        runInAction(() => {
-            this.suggestions = [];
-            if (res.data !== null && res.code === 1) {
-                const datas = res.data;
-                for (let i in datas) {
-                    this.suggestions.push('{' + i + '}');
-                }
-            }
         })
     }
 }
